@@ -1,0 +1,125 @@
+<div class="container">
+  <header class="section">
+      <img src="../assets/images/logo.png" alt="5chan logo">
+  </header>
+  <main class="row">
+
+    <!-- Connexion et Inscription -->
+    <div class="col-4">
+
+      <!-- Inscription -->
+      <div class="section">
+        <h4>S'inscrire 📝</h4>
+        <form (ngSubmit)="httpService.register(register)">
+          <table>
+            <tr>
+              <td>Nom d'utilisateur : </td>
+              <td><input type="text" name="username" [(ngModel)]="register.username"></td>
+            </tr>
+            <tr>
+              <td>Courriel : </td>
+              <td><input type="email" name="email" [(ngModel)]="register.email"></td>
+            </tr>
+            <tr>
+              <td>Mot de passe : </td>
+              <td><input type="password" name="password" [(ngModel)]="register.password"></td>
+            </tr>
+            <tr>
+              <td>Confirmer le mot de passe : </td>
+              <td><input type="password" name="passwordConfirm" [(ngModel)]="register.passwordConfirm"></td>
+            </tr>
+          </table>
+          <button type="submit">S'inscrire</button>
+        </form>
+      </div>
+      
+      <!-- Connexion -->
+      <div class="section">
+        <h4>Se connecter 🔌</h4>
+        <form (ngSubmit)="httpService.login(login)">
+          <table>
+            <tr>
+              <td>Nom d'utilisateur : </td>
+              <td><input type="text" name="username" [(ngModel)]="login.username"  ></td>
+         
+            </tr>
+            <tr>
+              <td>Mot de passe : </td>
+              <td><input type="password" name="password" [(ngModel)]="login.password"></td>
+            </tr>
+          </table>
+          <button type="submit">Se connecter</button>
+        </form>
+      </div>
+
+      <!-- Utilisateurs du seed -->
+      <div class="section">
+        <h4>Utilisateurs du seed 👥</h4>
+        <table class="table">
+          <tr><th>Username</th><th>Password</th><th>Email</th></tr>
+          <tr><td>chad</td><td>chadpass</td><td>chad@chad.chad</td></tr>
+          <tr><td>stacy</td><td>stacypass</td><td>stacy@stacy.stacy</td></tr>
+          <tr><td>karen</td><td>karenpass</td><td>karen@karen.karen</td></tr>
+        </table>
+      </div>
+      
+    </div>
+
+    <!-- Fils de discussion et messages -->
+    <div class="col">
+
+      <!-- Discussions -->
+      <div class="section">
+        <h4>Fils de discussion 📁</h4>
+        <div *ngFor="let t of threads" class="thread" (click)="displayMessages(t.id, t.title)">
+          <h5>📃 {{t.title}}</h5>
+        </div>
+        (Cliquez sur un fil pour faire apparaître ses messages)
+      </div>
+
+      <!-- Messages -->
+      <div class="section">
+        <h4>Messages 📜<span *ngIf="currentThread != ''"> : {{currentThread}}</span></h4>
+        <div *ngFor="let m of messages" class="message row align-items-center">
+          <div class="col-2 p-0" *ngIf="m.hasAvatar">
+            <!-- Astuce : L'id de l'utilisateur est accessible avec m.userId ici -->
+              <img [src]="'https://localhost:5001/api/Users/GetPictures/'+ m.userId" alt="Avatar" class="img-fluid">
+            }
+          
+          </div>
+          <div class="col">
+            {{m.text}}
+            <div style="text-align:right;">- {{m.username}} (Id : {{m.userId}})</div>
+          </div>
+        </div>
+
+        <!-- Envoyer un nouveau message -->
+        <form *ngIf="currentThread != ''" class="row align-items-center" (ngSubmit)="addMessage()">
+          <h5>Nouveau message : </h5>
+          <div class="col-auto">
+            <button type="submit">Envoyer</button>
+          </div>
+          <div class="col">
+            <textarea name="text" cols="80" rows="3" [(ngModel)]="nouveauMessage"></textarea>
+          </div>
+        </form>
+      </div>
+
+      <div class="section">
+        <!-- Rechercher les messages d'un utilisateur -->
+        <h4>Rechercher les messages d'un utilisateur 🔍</h4>
+        <form (ngSubmit)="searchMessages()">
+          Utilisateur : <input type="text" name="username" [(ngModel)]="rechercherUtilisateur">
+          &nbsp;<button type="submit">Rechercher</button>
+        </form>
+
+        <!-- Affichage des messages de l'utilisateur recherché -->
+        <div *ngFor="let m of messagesRecherche" class="message">
+          {{m.text}}
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+</div>
