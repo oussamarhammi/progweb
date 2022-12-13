@@ -1,0 +1,166 @@
+
+    <header class="container">
+        <div class="row">
+          <div class="col-auto">📷 J'ai yoink le template de Maxime</div>
+          <div class="col"><!-- eheheh 🤓 --></div>
+          <div class="col-auto" >📝 Inscription</div>
+          <div class="col-auto" >🔌 Connexion</div>
+          <div (click)="logoutUser()" class="col-auto">🚪 Déconnexion</div>
+        </div>
+      </header>
+      
+      <main class="container">
+        <div class="row galleries">
+      
+          <!-- GALERIES PUBLIQUES -->
+          <div class="col-12 col-lg-6">
+            <div class="left">
+              <div (click)="getGaleriePublique()" class="close">🔄</div>
+              <h2>👥📷 Galeries publiques</h2>
+                <div class="row">
+                  <div *ngFor=" let c of GalPub" class="col-6 col-lg-4 gallery">
+                      <div class="title">{{c.name}}</div>
+                      <img *ngIf="c.photoCouverture != undefined" (click)="chooseGalerie(c)"  [src]= "'https://localhost:5001/api/photos/miniature/'+ c.photoCouverture.id"   alt="photo"> 
+
+                      <img  *ngIf="c.photoCouverture == undefined" (click)="chooseGalerie(c)" src="assets/images/placeholder.png" alt="CHANGE-MOI" class="img-fluid">
+                 
+                      
+                  </div>
+                </div>
+              </div>
+          </div>
+        
+         
+        
+          <!-- MES GALERIES -->
+          <div class="col-12 col-lg-6">
+            <div class="right">
+              <div (click)="getGalerie()" class="close">🔄</div>
+              <h2>👤📷 Mes galeries</h2>
+        
+              <div class="row">
+                <div>
+                  <input #couverturechanged type="file" name="image" accept="image/*">
+            </div>
+
+                  
+                <div *ngFor=" let c of Galerie" class="col-6 col-lg-4 gallery">
+                  <div>
+                    <div class="aa"> {{c.name}}</div>
+                    <div (click)="deleteGalerie(c.id)" class="close">❌</div>
+                    <div (click)="changer(c.id)" class="courriel">📷
+                     
+                    </div>
+                    <div  (click)="AjoutPropr(c.id)"class="owner">➕👤</div>
+                  
+                      <div> 
+                         <img *ngIf="c.photoCouverture != undefined" (click)="chooseGalerie(c)"  [src]= "'https://localhost:5001/api/photos/miniature/'+ c.photoCouverture.id"   alt="photo"> 
+                      </div>
+                    
+                      <div>
+                        <img  *ngIf="c.photoCouverture == undefined" (click)="chooseGalerie(c)" src="assets/images/placeholder.png" alt="CHANGE-MOI" class="img-fluid">
+                      </div>
+                      
+
+                  </div>
+
+                </div>
+        
+
+              </div>
+            </div>
+          </div>
+        </div>
+  
+      </main>
+
+      <div class="col-12 " *ngIf="chosenGalerie != undefined && Galerie != undefined">
+        <div class="close">🔄</div>
+        <h2>👤📷 Mes Photos</h2>
+        <div class="row">
+         
+            <div>
+                <form (submit)="uploadViewChild(chosenGalerie.id)">
+                  <input #fileuploadviewchild type="file" name="image" accept="image/*">
+                  <div> <button type="submit"> Ajouter Photo➕</button></div>
+                 
+                </form>
+                {{progress}}%
+              
+                 
+              </div>
+          </div>
+         
+          <owl-carousel-o *ngIf="chosenGalerie != undefined && Galerie != undefined" [options]="customOptions">
+            <ng-container *ngFor="let p of chosenGalerie.photoList">
+               <div class="close">🔄</div>
+              <ng-template carouselSlide [id]="p.id +''">
+                <img [src]= "'https://localhost:5001/api/photos/miniature/'+ p.id"   alt="photo">
+                <div (click)="deletePhoto(p.id)" class="close">❌</div>
+              </ng-template>
+            </ng-container>
+          
+          </owl-carousel-o>
+     
+      </div>
+    
+    
+      <div class="container">
+
+        <div class="row">
+            <!-- CONNEXION -->
+            <div class="box col-auto">
+                <h3>Connexion</h3>
+              
+                Nom d'utilisateur<br>
+                <input type="text" name="username" [(ngModel)]="username"><br>
+                Mot de passe<br>
+                <input type="password" name="password" [(ngModel)]="password"><br>
+                <button (click)="loginUser()">Se connecter</button>
+                
+            </div>
+
+            <!-- INSCRIPTION -->
+            <div class="box col-auto">
+                <h3>Inscription</h3>
+                
+                Nom d'utilisateur<br>
+                <input type="text" name="username" [(ngModel)]="username"><br>
+                Adresse courriel<br>
+                <input type="text" name="email" [(ngModel)]="email"><br>
+                Mot de passe<br>
+                <input type="password" name="password" [(ngModel)]="password"><br>
+                Confirmez le mot de passe<br>
+                <input type="password" name="passwordConfirm" [(ngModel)]="passwordConfirm"><br>
+                <button (click)="registerUser()">S'inscrire</button>
+               
+            </div>
+
+            <!-- NOUVELLE GALERIE -->
+            <div class="box col-auto">
+                <h3>Nouvelle galerie</h3>
+                <form>
+                Titre<br>
+                <input type="text" name="name" [(ngModel)]="name"><br>
+                Publique
+                <input type="checkbox" name="isPublic" [(ngModel)]="isPublic"><br>
+                  <input #couvertureupload type="file" name="image" accept="image/*">
+                <button (click)="CreerGalerie()">Créer la galerie</button>
+  
+                </form>
+            </div>
+
+
+            <!-- NOUVELLE PROPRIÉTAIRE -->
+            <div class="box col-auto">
+                <h3>Ajouter un propriétaire</h3>
+                <form>
+                Nom d'utilisateur<br>
+                <input type="text" name="name"  [(ngModel)]="name"><br>
+                </form>
+            </div>
+        </div>
+      </div>
+
+       
+
