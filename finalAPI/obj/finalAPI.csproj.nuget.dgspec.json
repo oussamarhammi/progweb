@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\1876469\\Desktop\\formatif\\finalAPI\\finalAPI.csproj": {}
+    "C:\\Users\\1876469\\Desktop\\progweb\\finalAPI\\finalAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\1876469\\Desktop\\formatif\\finalAPI\\finalAPI.csproj": {
+    "C:\\Users\\1876469\\Desktop\\progweb\\finalAPI\\finalAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\1876469\\Desktop\\formatif\\finalAPI\\finalAPI.csproj",
+        "projectUniqueName": "C:\\Users\\1876469\\Desktop\\progweb\\finalAPI\\finalAPI.csproj",
         "projectName": "finalAPI",
-        "projectPath": "C:\\Users\\1876469\\Desktop\\formatif\\finalAPI\\finalAPI.csproj",
+        "projectPath": "C:\\Users\\1876469\\Desktop\\progweb\\finalAPI\\finalAPI.csproj",
         "packagesPath": "C:\\Users\\1876469\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\1876469\\Desktop\\formatif\\finalAPI\\obj\\",
+        "outputPath": "C:\\Users\\1876469\\Desktop\\progweb\\finalAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -61,6 +61,14 @@ export class AppComponent implements OnInit {
     })
   }
 
+  postMessage(id : number, text : string) : void{
+    let message = {id : 0, text : text};
+    this.http.post<any>(domain + "api/Messages/PostMessage/" + id, message).subscribe(x => {
+      console.log(x);
+      this.getMessages(id);
+    });
+  } 
+
   searchMessages() : void {
     // À COMPLÉTER
     // La variable this.messagesRecherche doit être remplie avec la liste des messages de l'utilisateur

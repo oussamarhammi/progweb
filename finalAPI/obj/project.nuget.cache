@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "1kjk2VHMExxvfZUrRuC8FGyRibbQ5S2IozyTrg58+TtB+MFnukM2tBfS+nMFtyu+kv0q27aa0c3jpEOMQFD06A==",
+  "dgSpecHash": "BtQVt9dsCRJa4f/Z6eGQf+iq/8B+CnGIUNwc8H8KxDAqegnye59RJHnPWPIZcZdYSdsIAbgMco7ZMHKl3mCmlA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\1876469\\Desktop\\formatif\\finalAPI\\finalAPI.csproj",
+  "projectFilePath": "C:\\Users\\1876469\\Desktop\\progweb\\finalAPI\\finalAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\1876469\\.nuget\\packages\\castle.core\\4.4.1\\castle.core.4.4.1.nupkg.sha512",
     "C:\\Users\\1876469\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
